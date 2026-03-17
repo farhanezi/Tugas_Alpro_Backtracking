@@ -1,0 +1,29 @@
+ALGORITMA SolveNQueens(board, col, n)
+    // 1. KONDISI BERHENTI (BASE CASE)
+    JIKA col >= n MAKA
+        KEMBALIKAN True (Semua Ratu berhasil diletakkan)
+    AKHIR JIKA
+
+    // 2. ITERASI SETIAP BARIS PADA KOLOM SAAT INI
+    UNTUK setiap row DARI 0 SAMPAI n-1 LAKUKAN:
+        
+        // CEK APAKAH POSISI AMAN?
+        JIKA IsSafe(board, row, col, n) ADALAH True MAKA
+            
+            // LETAKKAN RATU
+            board[row][col] = 1 
+            
+            // REKURSI: COBA ISI KOLOM BERIKUTNYA
+            JIKA SolveNQueens(board, col + 1, n) ADALAH True MAKA
+                KEMBALIKAN True
+            AKHIR JIKA
+
+            // JIKA GAGAL, LAKUKAN BACKTRACKING
+            board[row][col] = 0 (Hapus kembali Ratu)
+            
+        AKHIR JIKA
+    AKHIR UNTUK
+
+    // 3. JIKA TIDAK ADA BARIS YANG AMAN
+    KEMBALIKAN False
+AKHIR ALGORITMA
